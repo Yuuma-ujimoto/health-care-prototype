@@ -1,24 +1,26 @@
 # health-care-prototype
 
-## Project setup
-```
-npm install
-```
+## 概要
 
-### Compiles and hot-reloads for development
-```
+iPhoneのヘルスケアのように体重を登録してグラフで確認できるようにするアプリ
+
+フロントエンドをVue.jsで作り
+
+バックエンドをExpress+MongoDBで作成
+
+フロントにAPIでデータを受け渡す勉強になったり
+
+複雑なデータの処理等が勉強できた
+
+## 起動
+
+### フロントエンド
+```shell
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+### バックエンド
+```shell
+node server.js
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
