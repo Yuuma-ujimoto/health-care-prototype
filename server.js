@@ -1,11 +1,11 @@
 function formatDate() {
     const now = new Date()
 
-
+    let year = now.getFullYear()
     let month = now.getMonth() + 1
     let day = now.getDate()
     // 07-22
-    return `${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`
+    return `${year}-${month < 10 ? "0" + month : month}-${day < 10 ? "0" + day : day}`
 }
 
 const express = require("express")
@@ -23,12 +23,19 @@ const url = "mongodb://localhost:27017/mydb"
 app.use(express.urlencoded({extended: true}));
 
 
+
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: '*',
     credentials: true,
     optionsSuccessStatus: 200
 }))
 app.use(express.urlencoded({extended: true}));
+
+
+const serveStatic = require('serve-static');
+
+app.use(serveStatic(__dirname + "/dist"));
+
 
 app.get("/api/select_health_data",
     async (req, res) => {

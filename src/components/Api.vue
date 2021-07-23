@@ -25,7 +25,6 @@ export default {
     },
     getHealthData: async function () {
       const res = await axios.get("http://localhost:3000/api/select_health_data")
-      console.log(res.data.result)
       if(res.data.error){
         return {
         }
@@ -41,7 +40,6 @@ export default {
           if(!date_cache){
             label_list.push(i.date)
             // 前日データ情報を上書き
-            date_cache = date_to_int
           }
           else{
             // 前回データと今回データとの日付の差異
@@ -49,12 +47,11 @@ export default {
             label_list = label_list_cache
           }
 
-          console.log(date_to_int)
-
           result_list.push(i.weight)
         })
+        console.log(label_list)
         return {
-          label:label_list,
+          labels:label_list,
           datasets: [{
             label: "体重",
             borderColor:"#e67e22",
