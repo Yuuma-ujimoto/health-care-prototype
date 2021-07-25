@@ -64,10 +64,11 @@ export default {
         return []
       }
     },
-    insertHealthData: async function (weight) {
+    insertHealthData: async function (weight,date) {
 
       let params = new URLSearchParams();
       params.append('weight', weight);
+      params.append("date",date);
       const res = await axios.post("http://localhost:3000/api/insert_health_data",params)
       return res.data
     }

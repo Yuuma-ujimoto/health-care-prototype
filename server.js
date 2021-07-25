@@ -23,7 +23,6 @@ const url = "mongodb://localhost:27017/mydb"
 app.use(express.urlencoded({extended: true}));
 
 
-
 app.use(cors({
     origin: '*',
     credentials: true,
@@ -58,9 +57,16 @@ app.post("/api/insert_health_data",
         let client
         try {
             const weight = req.body.weight
+            let date = !req.body.date ? formatDate() : req.body.date;
+
             console.log(req.body)
-            const date = formatDate()
             client = await mongoClient.connect(url, option)
+
+           if(!weight){
+               res.json({error:true})
+               return
+           }
+
             const db = client.db("health")
             const collection = db.collection("weight")
             const count_check = await collection.countDocuments({date: date})

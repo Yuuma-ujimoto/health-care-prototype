@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>体重記録アプリ</h1>
+    <input class="input-date" type="date" v-model="time">
     <input class="input-weight" type="number" min="0" v-model="weight">
     <button class="post-weight" @click="insertData">登録！</button>
     <Api ref="api"/>
@@ -24,7 +25,8 @@ export default {
     return {
       chartData: {},
       options: {},
-      weight: null
+      weight: null,
+      time: null
     }
   },
   mounted() {
@@ -39,14 +41,14 @@ export default {
       }
     },
     insertData: async function () {
-      const response = await this.$refs.api.insertHealthData(this.weight)
+      const response = await this.$refs.api.insertHealthData(this.weight, this.time)
       console.log("res")
       console.log(response)
       if (!response.error) {
         await this.getChartData()
       }
     },
-    update_chart_data(chartData){
+    update_chart_data(chartData) {
       this.chartData = chartData
     }
   }
@@ -62,17 +64,25 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.input-weight{
+
+.input-weight, .input-date ,.post-weight {
   width: 200px;
   height: 50px;
   margin: 10px;
+  background-color: #ecf0f1;
+  border: none;
+  box-shadow: 0 3px 3px 1px #bdc3c7;
+  border-radius: 5px;
   box-sizing: border-box;
-  font-size: 24px;
+  font-size: 18px;
 }
-.post-weight{
-  width: 80px;
-  height: 50px;
-  margin: 10px;
-  box-sizing: border-box;
+
+.input-weight:focus-visible, .input-date:focus-visible{
+  border: none;
+  outline: none;
 }
+
+
+
+
 </style>
