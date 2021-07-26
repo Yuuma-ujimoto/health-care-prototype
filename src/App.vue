@@ -36,7 +36,6 @@ export default {
     getChartData: async function () {
       const response = await this.$refs.api.getHealthData()
       if (!response.error) {
-        console.log(response)
         this.update_chart_data(response)
       }
     },
