@@ -76,6 +76,15 @@ export default {
   font-size: 18px;
 }
 
+.post-weight:active{
+  transform: translateY(5px);
+  box-shadow: 0 0 3px 1px #bdc3c7;
+}
+
+.input-weight,.input-date{
+  padding-left: 10px;
+}
+
 .input-weight:focus-visible, .input-date:focus-visible{
   border: none;
   outline: none;
